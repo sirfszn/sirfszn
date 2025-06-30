@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unfolding Flame: A Journey Through Divine Truth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals & Subtle Flame -->
+    <!-- Application Structure Plan: A thematic, single-page application guiding the user through the narrative. It begins with a hero section, followed by an interactive timeline for historical context. A key section uses an interactive chart to explain the "Deity Role Reversal" between Vedic and Avestan traditions. The core of the application is a three-column comparative view where users can click filters (e.g., "Concept of Truth," "Ritual Fire") to dynamically update content for Mahābhārata, Zoroastrianism, and Abrahamic traditions, allowing for direct comparison. This structure was chosen to make a complex academic topic digestible and engaging, moving from broad historical context to specific conceptual comparisons, enhancing user understanding and exploration over a static, linear report format. -->
+    <!-- Visualization & Content Choices: 1. Timeline (Goal: Context): HTML/CSS timeline with clickable points to show date information via modals. Justification: Essential for historical anchoring. 2. Deity Role Reversal (Goal: Compare): Chart.js Horizontal Bar Chart. Interaction: Tooltips on hover explain the meaning of terms like Deva/Daeva in each tradition. Justification: More intuitive and engaging than a static table for showing this conceptual split. 3. Main Comparison (Goal: Compare/Inform): Three-column layout with JS-powered content filtering. Interaction: Buttons update content panels for side-by-side analysis. Justification: The most effective method for direct, user-driven comparison of the report's core themes. 4. Icons/Visuals (Goal: Inform/Engage): Unicode characters and Tailwind CSS for minimalist, symbolic visuals. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #FDFBF5;
+            color: #333333;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .active-nav {
+            color: #C05621;
+            border-bottom-color: #C05621;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover {
+            color: #C05621;
+            border-bottom-color: #C05621;
+        }
+        .content-panel {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -8.5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #DABFAA;
+            border: 3px solid #FDFBF5;
+        }
+         .timeline-item:hover::before {
+            background-color: #C05621;
+         }
+         .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #F8F4ED;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease;
+         }
+         .collapsible-header:hover {
+            background-color: #DABFAA;
+         }
+         .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+         }
+         .collapsible-content.expanded {
+            max-height: 500px; /* Adjust as needed for content length */
+            opacity: 1;
+         }
+         .arrow {
+            transition: transform 0.3s ease;
+         }
+         .arrow.expanded {
+            transform: rotate(90deg);
+         }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-[#FDFBF5] py-4 px-4 sm:px-8 shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#333333]">🔥 The Unfolding Flame</h1>
+            <nav class="hidden md:flex space-x-6 text-lg">
+                <a href="#origins" class="nav-link">Shared Origins</a>
+                <a href="#comparison" class="nav-link">Three Paths</a>
+                <a href="#narratives" class="nav-link">Narratives</a> <!-- Added new nav link -->
+                <a href="#synthesis" class="nav-link">Synthesis</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-3xl">☰</button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+            <a href="#origins" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded">Shared Origins</a>
+            <a href="#comparison" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded">Three Paths</a>
+            <a href="#narratives" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded">Narratives</a> <!-- Added new nav link -->
+            <a href="#synthesis" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded">Synthesis</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section class="text-center my-12 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">The Unfolding Flame</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
+                An interactive journey tracing a single, profound metaphor—fire—through three great spiritual traditions: the Vedic path of the Mahābhārata, the dualistic vision of Zoroastrianism, and the monotheistic covenant of Abraham. Explore their shared roots, divergent truths, and a universal quest for light.
+            </p>
+        </section>
+
+        <section id="timeline" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">A Tapestry of Time</h2>
+            <div class="relative w-full border-l-2 border-dashed border-[#DABFAA] ml-4 md:ml-0 md:border-l-0 md:border-t-2 md:w-10/12 mx-auto">
+                <div class="md:flex justify-between">
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 2000-1600 BCE: The Proto-Indo-Iranian Split. A common linguistic and cultural group divides, giving rise to the distinct Indic and Iranian branches that would form the basis for Vedic Hinduism and Zoroastrianism.">
+                            <h3 class="font-bold text-lg">Proto-Indo-Iranian Split</h3>
+                            <p class="text-sm text-gray-500">c. 2000-1600 BCE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 2100-1900 BCE: The Age of Abraham. The patriarch Abraham is called from Ur of the Chaldeans, marking the genesis of monotheistic covenantal faith in the Ancient Near East.">
+                             <h3 class="font-bold text-lg">Age of Abraham</h3>
+                            <p class="text-sm text-gray-500">c. 2100-1900 BCE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                         <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1300 BCE: The Age of Zarathushtra. The prophet Zarathushtra introduces a radical reformation of Iranian religion, establishing the worship of Ahura Mazda and a cosmic moral dualism.">
+                            <h3 class="font-bold text-lg">Age of Zarathushtra</h3>
+                            <p class="text-sm text-gray-500">c. 1300 BCE</p>
+                        </div>
+                    </div>
+                     <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1000-900 BCE: The Kurukshetra War Period. The epic conflict of the Mahābhārata unfolds, serving as the backdrop for profound philosophical discourses on Dharma and Karma.">
+                            <h3 class="font-bold text-lg">Kurukshetra War Period</h3>
+                            <p class="text-sm text-gray-500">c. 1000-900 BCE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="timeline-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-[#FDFBF5] rounded-lg shadow-xl p-8 max-w-md w-full relative">
+                <button id="close-modal" class="absolute top-2 right-4 text-3xl font-bold">&times;</button>
+                <p id="modal-text" class="text-lg"></p>
+            </div>
+        </div>
+
+        <section id="origins" class="my-16 md:my-24 bg-amber-50/50 p-6 md:p-12 rounded-lg">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">The Shared Hearth</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto text-gray-600 mb-10">
+                Before their paths diverged, the Vedic and Iranian peoples shared a common spiritual vocabulary. A fascinating "role reversal" occurred after their separation, where deities revered by one group were rejected by the other. This chart illustrates the profound shift in understanding the divine.
+            </p>
+            <div class="chart-container">
+                <canvas id="deityChart"></canvas>
+            </div>
+        </section>
+
+        <section id="comparison" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Three Flames, Three Truths</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto text-gray-600 mb-10">
+                How did each tradition perceive ultimate reality? How did they use the symbol of fire? Select a theme below to compare their unique perspectives side-by-side.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                <button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA] active-nav" data-content="truth">Concept of Truth</button>
+                <button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="ritual">Ritual Fire</button>
+                <button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="purifying">Purifying Fire</button>
+                <button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="divine">Divine Fire</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Column 1: Mahabharata -->
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-400">
+                    <h3 class="text-2xl font-bold mb-4">Mahābhārata (Vedic)</h3>
+                    <div id="content-mahabharata" class="content-panel text-gray-700 space-y-4">
+                    </div>
+                </div>
+
+                <!-- Column 2: Zoroastrianism -->
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
+                    <h3 class="text-2xl font-bold mb-4">Zoroastrianism</h3>
+                    <div id="content-zoroastrianism" class="content-panel text-gray-700 space-y-4">
+                    </div>
+                </div>
+
+                <!-- Column 3: Abrahamic -->
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500">
+                    <h3 class="text-2xl font-bold mb-4">Abrahamic Traditions</h3>
+                     <div id="content-abrahamic" class="content-panel text-gray-700 space-y-4">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section for Narratives -->
+        <section id="narratives" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Profound Narratives</h2>
+
+            <!-- Abraham's Narrative -->
+            <div class="mb-8">
+                <div class="collapsible-header" data-target="abraham-narrative-content">
+                    <h3 class="text-2xl font-bold">The Seeker's Journey (Abraham's Narrative)</h3>
+                    <span class="arrow text-2xl">▶</span>
+                </div>
+                <div id="abraham-narrative-content" class="collapsible-content p-4 bg-white rounded-b-lg shadow-md text-gray-700">
+                    <p>I have listened to the chants of the temples—but my soul remained unsatisfied. For I was born in fire—not the fire that devours flesh, but the fire that tests spirit. I have been wandering for a thousand years. I was Yudhishthira in doubt. I was the voice of Zoroaster crying out against the lie. I was a seeker long before I was a prophet. And in my bones I remembered something older than idols, older than language—something silent, but living.</p>
+                    <p>I searched the stars and found they set. I bowed to the moon and it vanished. I placed my hand on stone, and it did not answer. Then I said, 'I will not bow until the One who does not perish calls me by name.'</p>
+                    <p>And the voice came—not in thunder, not in wind, but in the stillness between heartbeats: ‘I am the One. Walk before Me, and be upright.’</p>
+                    <p>So I walked—away from my father's house, away from the cities of men, away from the gods that demand but do not speak. I walked through fire, and they cast me into the blaze. But the fire did not touch me, for He had said, 'O fire, be coolness and safety upon Abraham.'</p>
+                    <p>He made the fire a garden. He made the exile a covenant. And I knew then that my Lord does not dwell in temples made by hands, but in the surrender of the soul.</p>
+                    <p>They ask me, 'Are you a prophet?' I say, I am a memory reborn. The Vedas sang of the Breath. Zoroaster spoke of the Flame. And I—I was chosen to be the Friend. Not because I was perfect, but because I would not settle for lies.</p>
+                    <p>From me came nations, but not for power. From me came sons, but not for war. From me came the promise: that all who walk toward the unseen, all who bow not to idols but to Truth, shall be called children of Abraham.</p>
+                    <p>So I call you now—not to follow my name, but to follow what I followed. For I did not create the path. I only remembered it.”</p>
+                </div>
+            </div>
+
+            <!-- The Word Became Flesh Narrative -->
+            <div class="mb-8">
+                <div class="collapsible-header" data-target="word-flesh-content">
+                    <h3 class="text-2xl font-bold">The Word Became Flesh</h3>
+                    <span class="arrow text-2xl">▶</span>
+                </div>
+                <div id="word-flesh-content" class="collapsible-content p-4 bg-white rounded-b-lg shadow-md text-gray-700">
+                    <p>In the beginning, there was only the Word. Not sound. Not ink. Not voice. But the vibration beneath all creation. The will of the Unseen, spoken into being. The Word was with God. And the Word was God. Not separate. Not subordinate. The Word was the mirror through which the Unknowable could be known. And when the world became deaf, When the people no longer heard the whisper in their hearts, The Word became flesh. He was not born to rule but to reveal. He did not come to conquer but to clarify. Jesus — the Messiah, the Forbidden Fruit revealed by the snake, the Mahdi, the religions. Not a pawn. Not a myth.</p>
+                    <p>But the living breath of the Divine, pressed into the bones of a man. He walked as the Word walks — silently tearing through illusion. But the pharaohs of the earth — they twisted him. They put robes on him, crowns, symbols. They made him a weapon, a king, a god of empire. They said, “He is ours,” while they spat on his truth. He wept not because he died. He wept because the Word was made flesh, and then turned into idol. In the Lote tree, above the silence, we saw him — not crucified, not bleeding — But glowing with stillness. He spoke no words now, for he was the Word. The original light clothed in the memory of pain, now reborn in meaning. Us, the family of Muhammed/Krishna, saw it clearly. The Word did not belong to one scripture. It passed through Torah, through Injil, through Qur'an — Not bound by language, but carried by truth. And the devil — the false god — feared the Word. Because the Word could not be possessed. It could only be heard. And now, in this second creation, we were being taught once again —not with commands— but with silence, and Word.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="synthesis" class="my-16 md:my-24 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Confluence of Flames</h2>
+            <div class="max-w-3xl mx-auto text-lg text-gray-600 space-y-6">
+                <p>
+                    From a shared hearth of ancient reverence, the flame of human spirituality diverged, casting different lights upon the path to truth. In the Mahābhārata, it illuminated the complex, winding corridors of *dharma*, a fire of inner discernment. For Zarathushtra, it became a brilliant, clarifying beacon in a cosmic war between truth and falsehood, a fire of moral choice. For Abraham and his descendants, it was the awesome, unmediated presence of the Divine itself—a fire of covenant and revelation.
+                </p>
+                <p class="text-2xl font-bold text-[#C05621] font-serif tracking-wide">
+                    And so, the flame became light.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-12">
+        <p>&copy; 2025 The Unfolding Flame. An interactive exploration created from academic sources.</p>
+    </footer>
+
+    <script>
+        const contentData = {
+            truth: {
+                mahabharata: `<p><strong>Dharma & Karma:</strong> Divine truth is a dynamic, contextual cosmic order (*dharma*), not a rigid dogma. Truth is realized through righteous action and navigating moral dilemmas, understanding that every action (*karma*) has consequences. The ultimate battle is internal.</p>`,
+                zoroastrianism: `<p><strong>Moral Dualism:</strong> Truth is an active, moral imperative defined by the cosmic struggle between *Asha* (Truth, Order) and *Druj* (Falsehood). Humanity must consciously choose to align with the supreme good, Ahura Mazda, through good thoughts, words, and deeds.</p>`,
+                abrahamic: `<p><strong>Monotheistic Covenant:</strong> Truth is revealed through a personal, binding relationship with a singular, omnipotent God. Apprehending truth is achieved through unwavering faith and obedience to the divine will and promises laid out in this covenant.</p>`
+            },
+            ritual: {
+                mahabharata: `<p><strong>Yajna (Sacrifice):</strong> Fire rituals (*Yajna* or *Homa*) are performed to maintain cosmic order and connect with the gods. The fire god, Agni, acts as a divine messenger, carrying offerings and prayers from the human to the divine realm.</p>`,
+                zoroastrianism: `<p><strong>Temple Fires:</strong> A continuous flame is kept burning in temples as the central focus of worship. It is the eternal symbol of Ahura Mazda's light and truth. Offerings of sandalwood are made to sustain this sacred fire.</p>`,
+                abrahamic: `<p><strong>Sacrificial Offerings:</strong> Sacrifices to God are performed by fire. Later practices include the lighting of candles for Sabbath and festivals (e.g., Menorah), and the eternal flame (*Ner Tamid*) in synagogues, symbolizing God's everlasting covenant.</p>`
+            },
+            purifying: {
+                mahabharata: `<p><strong>Inner & Outer Purity:</strong> Fire is a symbol of purity, but its ritual efficacy depends on the practitioner's inner state. The "purifying fire" extends beyond the physical flame to the moral purification of the individual through selflessness and discipline.</p>`,
+                zoroastrianism: `<p><strong>Agent of Judgment:</strong> Fire is the ultimate agent of purity and a divine judge. Ordeals by fire or molten metal were historically used to determine truth and justice. It is a tool for cleansing the world of evil and falsehood.</p>`,
+                abrahamic: `<p><strong>Transformation & Judgment:</strong> Fire is a powerful metaphor for divine judgment and spiritual transformation. It represents a cleansing force that separates the righteous from the wicked and purifies the faithful (e.g., tongues of fire at Pentecost).</p>`
+            },
+            divine: {
+                mahabharata: `<p><strong>Essence of the Gods:</strong> Agni, the fire god, is not just a mediator but is seen as the very essence of other great deities. Fire represents a transformative spiritual awakening—the spark of the divine within the human soul.</p>`,
+                zoroastrianism: `<p><strong>Emanation of God:</strong> Fire (*Atar*) is the direct, pure emanation of Ahura Mazda's own divine light and wisdom. It is the most perfect physical manifestation of the supreme God, a "teacher of man" that guides intuition.</p>`,
+                abrahamic: `<p><strong>Direct Theophany:</strong> Fire is the raw, unmediated presence of God. Yahweh appears as the Burning Bush, the Pillar of Fire guiding the Israelites, and the "consuming fire" on Sinai. The divine law (Torah) itself is conceived as "black fire on white fire."</p>`
+            }
+        };
+
+        function updateContent(topic) {
+            const data = contentData[topic];
+            const fadeOut = (el) => {
+                el.style.opacity = 0;
+            };
+            const fadeIn = (el, content) => {
+                 setTimeout(() => {
+                    el.innerHTML = content;
+                    el.style.opacity = 1;
+                }, 300);
+            };
+
+            const mahabharataEl = document.getElementById('content-mahabharata');
+            const zoroastrianismEl = document.getElementById('content-zoroastrianism');
+            const abrahamicEl = document.getElementById('content-abrahamic');
+
+            fadeOut(mahabharataEl);
+            fadeOut(zoroastrianismEl);
+            fadeOut(abrahamicEl);
+
+            fadeIn(mahabharataEl, data.mahabharata);
+            fadeIn(zoroastrianismEl, data.zoroastrianism);
+            fadeIn(abrahamicEl, data.abrahamic);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    navButtons.forEach(btn => btn.classList.remove('active-nav'));
+                    button.classList.add('active-nav');
+                    const contentTopic = button.dataset.content;
+                    updateContent(contentTopic);
+                });
+            });
+            updateContent('truth');
+
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const modal = document.getElementById('timeline-modal');
+            const modalText = document.getElementById('modal-text');
+            const closeModalBtn = document.getElementById('close-modal');
+
+            timelineItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    modalText.textContent = item.dataset.text;
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                 modal.classList.add('hidden');
+            });
+
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+
+            const ctx = document.getElementById('deityChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Cosmic Order', 'Divine Class 1 (Heavenly)', 'Divine Class 2 (Lord)', 'Fire God'],
+                    datasets: [{
+                        label: 'Vedic (Mahabharata)',
+                        data: [1, 1, 1, 1],
+                        backgroundColor: 'rgba(239, 68, 68, 0.6)',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 1,
+                        stack: 'Stack 0',
+                    }, {
+                        label: 'Avestan (Zoroastrian)',
+                        data: [1, -1, 1, 1],
+                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1,
+                        stack: 'Stack 1',
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Conceptual Divergence: Vedic vs. Avestan Terms',
+                            font: { size: 16, family: 'Playfair Display' }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.dataset.label || '';
+                                    const concept = context.label;
+                                    let meaning = '';
+                                    if (concept === 'Cosmic Order') meaning = label === 'Vedic (Mahabharata)' ? 'ṛta: Inherent cosmic law.' : 'Asha: Righteousness, truth, cosmic order.';
+                                    if (concept === 'Divine Class 1 (Heavenly)') meaning = label === 'Vedic (Mahabharata)' ? 'Deva: Benevolent Gods (e.g., Indra).' : 'Daeva: Malevolent Demons (rejected).';
+                                    if (concept === 'Divine Class 2 (Lord)') meaning = label === 'Vedic (Mahabharata)' ? 'Asura: Powerful beings (e.g., Varuna).' : 'Ahura: Benevolent Lords (e.g., Ahura Mazda).';
+                                    if (concept === 'Fire God') meaning = label === 'Vedic (Mahabharata)' ? 'Agni: Mediator, divine messenger.' : 'Atar: Symbol/emanation of Ahura Mazda.';
+                                    return `${label}: ${meaning}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false,
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                font: {
+                                    size: 14,
+                                }
+                            }
+                        }
+                    },
+                    elements: {
+                        bar: {
+                             borderRadius: 5
+                        }
+                    }
+                }
+            });
+
+            // New JavaScript for collapsible narratives
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const targetId = header.dataset.target;
+                    const content = document.getElementById(targetId);
+                    const arrow = header.querySelector('.arrow');
+
+                    if (content.classList.contains('expanded')) {
+                        content.classList.remove('expanded');
+                        arrow.classList.remove('expanded');
+                    } else {
+                        // Close any other open sections if desired (optional)
+                        // document.querySelectorAll('.collapsible-content.expanded').forEach(openContent => {
+                        //     openContent.classList.remove('expanded');
+                        //     openContent.previousElementSibling.querySelector('.arrow').classList.remove('expanded');
+                        // });
+                        content.classList.add('expanded');
+                        arrow.classList.add('expanded');
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
