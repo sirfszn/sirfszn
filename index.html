@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2549">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;The Unfolding Flame: A Journey Through Divine Truth&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Lato:wght@400;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Chosen Palette: Warm Neutrals &amp; Subtle Flame --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Application Structure Plan: A thematic, single-page application guiding the user through the narrative. It begins with a hero section, followed by an interactive timeline for historical context. A key section uses an interactive chart to explain the "Deity Role Reversal" between Vedic and Avestan traditions. The core of the application is a three-column comparative view where users can click filters (e.g., "Concept of Truth," "Ritual Fire") to dynamically update content for Mahābhārata, Zoroastrianism, and Abrahamic traditions, allowing for direct comparison. This structure was chosen to make a complex academic topic digestible and engaging, moving from broad historical context to specific conceptual comparisons, enhancing user understanding and exploration over a static, linear report format. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Visualization &amp; Content Choices: 1. Timeline (Goal: Context): HTML/CSS timeline with clickable points to show date information via modals. Justification: Essential for historical anchoring. 2. Deity Role Reversal (Goal: Compare): Chart.js Horizontal Bar Chart. Interaction: Tooltips on hover explain the meaning of terms like Deva/Daeva in each tradition. Justification: More intuitive and engaging than a static table for showing this conceptual split. 3. Main Comparison (Goal: Compare/Inform): Three-column layout with JS-powered content filtering. Interaction: Buttons update content panels for side-by-side analysis. Justification: The most effective method for direct, user-driven comparison of the report's core themes. 4. Icons/Visuals (Goal: Inform/Engage): Unicode characters and Tailwind CSS for minimalist, symbolic visuals. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Lato', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FDFBF5;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333333;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1, h2, h3 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Playfair Display', serif;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.active-nav {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #C05621;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom-color: #C05621;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 2px solid transparent;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #C05621;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom-color: #C05621;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.content-panel {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: opacity 0.5s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 350px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (min-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.timeline-item::before {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: -8.5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #DABFAA;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 3px solid #FDFBF5;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">         </span>.timeline-item:hover::before {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #C05621;</p>
+<p class="p1"><span class="Apple-converted-space">         </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="antialiased"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="bg-[#FDFBF5] py-4 px-4 sm:px-8 shadow-sm sticky top-0 z-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-xl md:text-2xl font-bold text-[#333333]"&gt;🔥 The Unfolding Flame&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;nav class="hidden md:flex space-x-6 text-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#origins" class="nav-link"&gt;Shared Origins&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#comparison" class="nav-link"&gt;Three Paths&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#synthesis" class="nav-link"&gt;Synthesis&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="md:hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="menu-btn" class="text-3xl"&gt;☰&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="mobile-menu" class="hidden md:hidden mt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#origins" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded"&gt;Shared Origins&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#comparison" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded"&gt;Three Paths&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#synthesis" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded"&gt;Synthesis&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main class="container mx-auto p-4 md:p-8"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="text-center my-12 md:my-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl md:text-6xl font-bold mb-4"&gt;The Unfolding Flame&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>An interactive journey tracing a single, profound metaphor—fire—through three great spiritual traditions: the Vedic path of the Mahābhārata, the dualistic vision of Zoroastrianism, and the monotheistic covenant of Abraham. Explore their shared roots, divergent truths, and a universal quest for light.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="timeline" class="my-16 md:my-24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl md:text-4xl font-bold text-center mb-12"&gt;A Tapestry of Time&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="relative w-full border-l-2 border-dashed border-[#DABFAA] ml-4 md:ml-0 md:border-l-0 md:border-t-2 md:w-10/12 mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="md:flex justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="md:w-1/4 mb-8 md:mb-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 2000-1600 BCE: The Proto-Indo-Iranian Split. A common linguistic and cultural group divides, giving rise to the distinct Indic and Iranian branches that would form the basis for Vedic Hinduism and Zoroastrianism."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-lg"&gt;Proto-Indo-Iranian Split&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-500"&gt;c. 2000-1600 BCE&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="md:w-1/4 mb-8 md:mb-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 2100-1900 BCE: The Age of Abraham. The patriarch Abraham is called from Ur of the Chaldeans, marking the genesis of monotheistic covenantal faith in the Ancient Near East."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                             </span>&lt;h3 class="font-bold text-lg"&gt;Age of Abraham&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-500"&gt;c. 2100-1900 BCE&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="md:w-1/4 mb-8 md:mb-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1300 BCE: The Age of Zarathushtra. The prophet Zarathushtra introduces a radical reformation of Iranian religion, establishing the worship of Ahura Mazda and a cosmic moral dualism."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-lg"&gt;Age of Zarathushtra&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-500"&gt;c. 1300 BCE&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="md:w-1/4 mb-8 md:mb-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1000-900 BCE: The Kurukshetra War Period. The epic conflict of the Mahābhārata unfolds, serving as the backdrop for profound philosophical discourses on Dharma and Karma."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-lg"&gt;Kurukshetra War Period&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-500"&gt;c. 1000-900 BCE&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="timeline-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-[#FDFBF5] rounded-lg shadow-xl p-8 max-w-md w-full relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="close-modal" class="absolute top-2 right-4 text-3xl font-bold"&gt;&amp;times;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p id="modal-text" class="text-lg"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="origins" class="my-16 md:my-24 bg-amber-50/50 p-6 md:p-12 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl md:text-4xl font-bold text-center mb-4"&gt;The Shared Hearth&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-center max-w-3xl mx-auto text-gray-600 mb-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Before their paths diverged, the Vedic and Iranian peoples shared a common spiritual vocabulary. A fascinating "role reversal" occurred after their separation, where deities revered by one group were rejected by the other. This chart illustrates the profound shift in understanding the divine.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;canvas id="deityChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="comparison" class="my-16 md:my-24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl md:text-4xl font-bold text-center mb-4"&gt;Three Flames, Three Truths&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-center max-w-3xl mx-auto text-gray-600 mb-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>How did each tradition perceive ultimate reality? How did they use the symbol of fire? Select a theme below to compare their unique perspectives side-by-side.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA] active-nav" data-content="truth"&gt;Concept of Truth&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="ritual"&gt;Ritual Fire&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="purifying"&gt;Purifying Fire&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="divine"&gt;Divine Fire&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Column 1: Mahabharata --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-4"&gt;Mahābhārata (Vedic)&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="content-mahabharata" class="content-panel text-gray-700 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Column 2: Zoroastrianism --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-4"&gt;Zoroastrianism&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="content-zoroastrianism" class="content-panel text-gray-700 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Column 3: Abrahamic --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-4"&gt;Abrahamic Traditions&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div id="content-abrahamic" class="content-panel text-gray-700 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="synthesis" class="my-16 md:my-24 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl md:text-4xl font-bold mb-4"&gt;Confluence of Flames&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="max-w-3xl mx-auto text-lg text-gray-600 space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>From a shared hearth of ancient reverence, the flame of human spirituality diverged, casting different lights upon the path to truth. In the Mahābhārata, it illuminated the complex, winding corridors of *dharma*, a fire of inner discernment. For Zarathushtra, it became a brilliant, clarifying beacon in a cosmic war between truth and falsehood, a fire of moral choice. For Abraham and his descendants, it was the awesome, unmediated presence of the Divine itself—a fire of covenant and revelation.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-2xl font-bold text-[#C05621] font-serif tracking-wide"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>And so, the flame became light.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="bg-gray-800 text-white text-center p-4 mt-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&amp;copy; 2025 The Unfolding Flame. An interactive exploration created from academic sources.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const contentData = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>truth: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mahabharata: `&lt;p&gt;&lt;strong&gt;Dharma &amp; Karma:&lt;/strong&gt; Divine truth is a dynamic, contextual cosmic order (*dharma*), not a rigid dogma. Truth is realized through righteous action and navigating moral dilemmas, understanding that every action (*karma*) has consequences. The ultimate battle is internal.&lt;/p&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>zoroastrianism: `&lt;p&gt;&lt;strong&gt;Moral Dualism:&lt;/strong&gt; Truth is an active, moral imperative defined by the cosmic struggle between *Asha* (Truth, Order) and *Druj* (Falsehood). Humanity must consciously choose to align with the supreme good, Ahura Mazda, through good thoughts, words, and deeds.&lt;/p&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>abrahamic: `&lt;p&gt;&lt;strong&gt;Monotheistic Covenant:&lt;/strong&gt; Truth is revealed through a personal, binding relationship with a singular, omnipotent God. Apprehending truth is achieved through unwavering faith and obedience to the divine will and promises laid out in this covenant.&lt;/p&gt;`</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ritual: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mahabharata: `&lt;p&gt;&lt;strong&gt;Yajna (Sacrifice):&lt;/strong&gt; Fire rituals (*Yajna* or *Homa*) are performed to maintain cosmic order and connect with the gods. The fire god, Agni, acts as a divine messenger, carrying offerings and prayers from the human to the divine realm.&lt;/p&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>zoroastrianism: `&lt;p&gt;&lt;strong&gt;Temple Fires:&lt;/strong&gt; A continuous flame is kept burning in temples as the central focus of worship. It is the eternal symbol of Ahura Mazda's light and truth. Offerings of sandalwood are made to sustain this sacred fire.&lt;/p&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>abrahamic: `&lt;p&gt;&lt;strong&gt;Sacrificial Offerings:&lt;/strong&gt; Sacrifices to God are performed by fire. Later practices include the lighting of candles for Sabbath and festivals (e.g., Menorah), and the eternal flame (*Ner Tamid*) in synagogues, symbolizing God's everlasting covenant.&lt;/p&gt;`</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>purifying: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mahabharata: `&lt;p&gt;&lt;strong&gt;Inner &amp; Outer Purity:&lt;/strong&gt; Fire is a symbol of purity, but its ritual efficacy depends on the practitioner's inner state. The "purifying fire" extends beyond the physical flame to the moral purification of the individual through selflessness and discipline.&lt;/p&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>zoroastrianism: `&lt;p&gt;&lt;strong&gt;Agent of Judgment:&lt;/strong&gt; Fire is the ultimate agent of purity and a divine judge. Ordeals by fire or molten metal were historically used to determine truth and justice. It is a tool for cleansing the world of evil and falsehood.&lt;/p&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>abrahamic: `&lt;p&gt;&lt;strong&gt;Transformation &amp; Judgment:&lt;/strong&gt; Fire is a powerful metaphor for divine judgment and spiritual transformation. It represents a cleansing force that separates the righteous from the wicked and purifies the faithful (e.g., tongues of fire at Pentecost).&lt;/p&gt;`</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>divine: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mahabharata: `&lt;p&gt;&lt;strong&gt;Essence of the Gods:&lt;/strong&gt; Agni, the fire god, is not just a mediator but is seen as the very essence of other great deities. Fire represents a transformative spiritual awakening—the spark of the divine within the human soul.&lt;/p&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>zoroastrianism: `&lt;p&gt;&lt;strong&gt;Emanation of God:&lt;/strong&gt; Fire (*Atar*) is the direct, pure emanation of Ahura Mazda's own divine light and wisdom. It is the most perfect physical manifestation of the supreme God, a "teacher of man" that guides intuition.&lt;/p&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>abrahamic: `&lt;p&gt;&lt;strong&gt;Direct Theophany:&lt;/strong&gt; Fire is the raw, unmediated presence of God. Yahweh appears as the Burning Bush, the Pillar of Fire guiding the Israelites, and the "consuming fire" on Mount Sinai. The divine law (Torah) itself is conceived as "black fire on white fire."&lt;/p&gt;`</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateContent(topic) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const data = contentData[topic];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const fadeOut = (el) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>el.style.opacity = 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const fadeIn = (el, content) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>el.innerHTML = content;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>el.style.opacity = 1;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}, 300);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const mahabharataEl = document.getElementById('content-mahabharata');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const zoroastrianismEl = document.getElementById('content-zoroastrianism');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const abrahamicEl = document.getElementById('content-abrahamic');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>fadeOut(mahabharataEl);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fadeOut(zoroastrianismEl);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fadeOut(abrahamicEl);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>fadeIn(mahabharataEl, data.mahabharata);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fadeIn(zoroastrianismEl, data.zoroastrianism);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fadeIn(abrahamicEl, data.abrahamic);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const navButtons = document.querySelectorAll('.nav-btn');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>navButtons.forEach(button =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>navButtons.forEach(btn =&gt; btn.classList.remove('active-nav'));</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.classList.add('active-nav');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const contentTopic = button.dataset.content;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>updateContent(contentTopic);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateContent('truth');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const menuBtn = document.getElementById('menu-btn');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const mobileMenu = document.getElementById('mobile-menu');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>menuBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mobileMenu.classList.toggle('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const timelineItems = document.querySelectorAll('.timeline-item');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const modal = document.getElementById('timeline-modal');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const modalText = document.getElementById('modal-text');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const closeModalBtn = document.getElementById('close-modal');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>timelineItems.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>item.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>modalText.textContent = item.dataset.text;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>modal.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>closeModalBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>modal.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>modal.addEventListener('click', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if(e.target === modal) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>modal.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const ctx = document.getElementById('deityChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>new Chart(ctx, {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>labels: ['Cosmic Order', 'Divine Class 1 (Heavenly)', 'Divine Class 2 (Lord)', 'Fire God'],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>label: 'Vedic (Mahabharata)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: [1, 1, 1, 1],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: 'rgba(239, 68, 68, 0.6)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderColor: 'rgba(239, 68, 68, 1)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderWidth: 1,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>stack: 'Stack 0',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}, {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>label: 'Avestan (Zoroastrian)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>data: [1, -1, 1, 1],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: 'rgba(59, 130, 246, 0.6)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderColor: 'rgba(59, 130, 246, 1)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>borderWidth: 1,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>stack: 'Stack 1',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>indexAxis: 'y',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>title: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>display: true,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>text: 'Conceptual Divergence: Vedic vs. Avestan Terms',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>font: { size: 16, family: 'Playfair Display' }</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>label: function(context) {</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>const label = context.dataset.label || '';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>const concept = context.label;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>let meaning = '';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>if (concept === 'Cosmic Order') meaning = label === 'Vedic (Mahabharata)' ? 'ṛta: Inherent cosmic law.' : 'Asha: Righteousness, truth, cosmic order.';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>if (concept === 'Divine Class 1 (Heavenly)') meaning = label === 'Vedic (Mahabharata)' ? 'Deva: Benevolent Gods (e.g., Indra).' : 'Daeva: Malevolent Demons (rejected).';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>if (concept === 'Divine Class 2 (Lord)') meaning = label === 'Vedic (Mahabharata)' ? 'Asura: Powerful beings (e.g., Varuna).' : 'Ahura: Benevolent Lords (e.g., Ahura Mazda).';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>if (concept === 'Fire God') meaning = label === 'Vedic (Mahabharata)' ? 'Agni: Mediator, divine messenger.' : 'Atar: Symbol/emanation of Ahura Mazda.';</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>return `${label}: ${meaning}`;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>x: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>display: false,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>stacked: true,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>y: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>stacked: true,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>ticks: {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>font: {</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>size: 14,</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>elements: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>bar: {</p>
+<p class="p1"><span class="Apple-converted-space">                             </span>borderRadius: 5</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
