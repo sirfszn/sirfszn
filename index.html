@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unfolding Flame: A Journey Through Divine Truth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+    <style>
+        /* Define CSS variables for light mode */
+        :root {
+            --bg-primary: #FDFBF5;
+            --text-primary: #333333;
+            --bg-secondary: #F8F4ED;
+            --border-color: #DABFAA;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --button-bg: #FFFFFF;
+            --button-hover-bg: #DABFAA;
+            --active-nav-color: #C05621;
+            --footer-bg: #4A5568;
+            --footer-text: #FFFFFF;
+            --nav-link-light-color: #333333; /* Specific color for nav links in light mode */
+            --content-text-light-color: #333333; /* Explicit for content panels */
+            --active-button-light-color: #C05621; /* Active button text color in light mode */
+            --narrative-content-light-color: #333333; /* Narrative content text color in light mode */
+        }
+
+        /* Define CSS variables for dark mode */
+        body.dark-mode {
+            --bg-primary: #0F172A; /* Darker primary background */
+            --text-primary: #E2E8F0; /* Lighter general text for contrast */
+            --bg-secondary: #1E293B; /* Slightly lighter secondary background */
+            --border-color: #334155; /* Darker border for subtle separation */
+            --shadow-color: rgba(255, 255, 255, 0.08); /* Lighter shadow for dark mode */
+            --button-bg: #334155; /* Darker button background */
+            --button-hover-bg: #475569; /* Lighter hover for buttons */
+            --active-nav-color: #60A5FA; /* A distinct blue for active nav/accents */
+            --footer-bg: #0F172A; /* Match primary background */
+            --footer-text: #CBD5E0; /* Lighter footer text */
+            --nav-link-dark-color: #000000; /* Black for unclicked nav links/buttons in dark mode */
+            --comparison-panel-content-dark-color: #93C5FD; /* Blue for content panels in dark mode */
+            --comparison-panel-heading-dark-color: #FB923C; /* Orange for comparison panel headings in dark mode */
+            --active-button-dark-color: #FB923C; /* Active button text color in dark mode (orange) */
+            --narrative-content-dark-color: #000000; /* Black for narrative content in dark mode */
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .active-nav {
+            color: var(--active-nav-color);
+            border-bottom-color: var(--active-nav-color);
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            color: var(--nav-link-light-color); /* Default to light mode nav link color */
+        }
+        .nav-link:hover {
+            color: var(--active-nav-color);
+            border-bottom-color: var(--active-nav-color);
+        }
+        /* Override nav link color for dark mode */
+        body.dark-mode .nav-link {
+            color: var(--nav-link-dark-color);
+        }
+        body.dark-mode .nav-link:hover {
+            color: var(--active-nav-color); /* Keep active-nav-color for hover in dark mode */
+        }
+
+        .content-panel {
+            transition: opacity 0.5s ease-in-out;
+            color: var(--content-text-light-color); /* Default content text color */
+        }
+        body.dark-mode .content-panel {
+            color: var(--comparison-panel-content-dark-color); /* Dark mode specific content text color */
+        }
+        /* Style for comparison panel headings in dark mode */
+        body.dark-mode .grid > div > h3 {
+            color: var(--comparison-panel-heading-dark-color);
+        }
+        /* Style for active comparison buttons in dark mode */
+        body.dark-mode .nav-btn.active-nav {
+            color: var(--active-button-dark-color); /* Orange for active buttons in dark mode */
+        }
+        /* Ensure nav-btn active-nav overrides nav-link color */
+        body.dark-mode .nav-btn.active-nav.nav-link {
+            color: var(--active-button-dark-color);
+        }
+
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -8.5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            border: 3px solid var(--bg-primary);
+        }
+         .timeline-item:hover::before {
+            background-color: var(--active-nav-color);
+         }
+         /* Styles for collapsible sections */
+         .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--bg-secondary);
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease;
+         }
+         .collapsible-header:hover {
+            background-color: var(--button-hover-bg);
+         }
+         .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+            padding: 0 1rem; /* Add padding here, will be visible when expanded */
+            color: var(--narrative-content-light-color); /* Ensure narrative content uses primary text color */
+         }
+         body.dark-mode .collapsible-content {
+            color: var(--narrative-content-dark-color); /* Black for narrative content in dark mode */
+         }
+         .collapsible-content.expanded {
+            max-height: 5000px; /* A very large value to accommodate content */
+            overflow-y: auto; /* Enable scrolling for long content */
+            opacity: 1;
+            padding: 1rem; /* Apply padding when expanded */
+         }
+         .arrow {
+            transition: transform 0.3s ease;
+         }
+         .arrow.expanded {
+            transform: rotate(90deg);
+         }
+         /* Apply CSS variables to Tailwind-like classes */
+         .bg-amber-50\/50 {
+            background-color: var(--bg-secondary);
+         }
+         .bg-white {
+            background-color: var(--button-bg);
+         }
+         .shadow-sm {
+            box-shadow: 0 1px 2px var(--shadow-color);
+         }
+         .shadow-md {
+            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -1px var(--shadow-color);
+         }
+         .nav-btn {
+            background-color: var(--button-bg);
+            box-shadow: 0 1px 2px var(--shadow-color);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+         }
+         .nav-btn:hover {
+            background-color: var(--button-hover-bg);
+         }
+         .bg-gray-800 {
+            background-color: var(--footer-bg);
+         }
+         .text-white {
+            color: var(--footer-text);
+         }
+         .text-gray-600 {
+            color: var(--text-primary);
+         }
+         .text-gray-500 {
+            color: var(--text-primary);
+            opacity: 0.8;
+         }
+         /* Removed specific AI button styles as they are no longer used */
+         .generated-content, .generated-answer, .generated-reflection {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: var(--bg-primary);
+            border-left: 4px solid var(--active-nav-color);
+            border-radius: 0.25rem;
+            font-style: italic;
+            color: var(--text-primary);
+         }
+         .loading-indicator {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--active-nav-color);
+         }
+         /* Added style for modal text in dark mode */
+         body.dark-mode #modal-text {
+            color: #000000; /* Black color for modal text in dark mode */
+         }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-[#FDFBF5] py-4 px-4 sm:px-8 shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#333333]">🔥 The Unfolding Flame</h1>
+            <nav class="hidden md:flex space-x-6 text-lg">
+                <a href="#timeline" class="nav-link">Timeline</a>
+                <a href="#comparison" class="nav-link">Three Paths</a>
+                <a href="#narratives" class="nav-link">Narratives</a>
+                <a href="#synthesis" class="nav-link">Synthesis</a>
+                <button id="theme-toggle" class="nav-link px-3 py-1 rounded-full text-sm">
+                    <span id="theme-icon-desktop"></span> <!-- Icon will be inserted here -->
+                </button>
+            </nav>
+            <div class="md:hidden flex items-center">
+                <button id="theme-toggle-mobile" class="nav-link px-3 py-1 rounded-full text-sm mr-2">
+                    <span id="theme-icon-mobile"></span> <!-- Icon will be inserted here -->
+                </button>
+                <button id="menu-btn" class="text-3xl">☰</button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+            <a href="#timeline" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded">Timeline</a>
+            <a href="#comparison" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded">Three Paths</a>
+            <a href="#narratives" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded">Narratives</a>
+            <a href="#synthesis" class="block py-2 px-4 text-lg hover:bg-gray-200 rounded">Synthesis</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section class="text-center my-12 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">The Unfolding Flame</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
+                An interactive journey tracing a single, profound metaphor—fire and light of Guides (The Mahids)—through three great spiritual traditions: the Vedic path of the Mahābhārata, the dualistic vision of Zoroastrianism, and the monotheistic covenant of Abraham. Exploring their shared roots, divergent truths, and a universal quest for light and truth
+            </p>
+        </section>
+
+        <section id="timeline" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">A Tapestry of Time</h2>
+            <div class="relative w-full border-l-2 border-dashed border-[#DABFAA] ml-4 md:ml-0 md:border-l-0 md:border-t-2 md:w-10/12 mx-auto">
+                <div class="md:flex justify-between flex-wrap">
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 2000-1600 BCE: The Proto-Indo-Iranian Split. A common linguistic and cultural group divides, giving rise to the distinct Indic and Iranian branches that would form the basis for Vedic Hinduism and Zoroastrianism.">
+                            <h3 class="font-bold text-lg">Proto-Indo-Iranian Split</h3>
+                            <p class="text-sm text-gray-500">c. 2000-1600 BCE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 2100-1900 BCE: The Age of Abraham. The patriarch Abraham is called from Ur of the Chaldeans, marking the genesis of monotheistic covenantal faith in the Ancient Near East.">
+                             <h3 class="font-bold text-lg">Age of Abraham</h3>
+                            <p class="text-sm text-gray-500">c. 2100-1900 BCE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1800-1700 BCE: The Age of Joseph. Joseph, son of Jacob, rises to prominence in Egypt, playing a pivotal role in the preservation of his family and the Israelites during a famine.">
+                            <h3 class="font-bold text-lg">Age of Joseph</h3>
+                            <p class="text-sm text-gray-500">c. 1800-1700 BCE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                         <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1400-1200 BCE: The Age of Moses. Moses leads the Israelites out of Egypt (Exodus) and receives the Torah (Law) from God on Mount Sinai, establishing the foundational laws for Judaism.">
+                            <h3 class="font-bold text-lg">Age of Moses</h3>
+                            <p class="text-sm text-gray-500">c. 1400-1200 BCE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                         <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1300 BCE: The Age of Zarathushtra. The prophet Zarathushtra introduces a radical reformation of Iranian religion, establishing the worship of Ahura Mazda and a cosmic moral dualism.">
+                            <h3 class="font-bold text-lg">Age of Zarathushtra</h3>
+                            <p class="text-sm text-gray-500">c. 1300 BCE</p>
+                        </div>
+                    </div>
+                     <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1040-970 BCE: The Age of David. King David establishes the United Monarchy of Israel, conquers Jerusalem, and is considered a central figure in Jewish and Christian tradition.">
+                            <h3 class="font-bold text-lg">Age of David</h3>
+                            <p class="text-sm text-gray-500">c. 1040-970 BCE</p>
+                        </div>
+                    </div>
+                     <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 970-931 BCE: The Age of Solomon. King Solomon, son of David, builds the First Temple in Jerusalem and is renowned for his wisdom and wealth.">
+                            <h3 class="font-bold text-lg">Age of Solomon</h3>
+                            <p class="text-sm text-gray-500">c. 970-931 BCE</p>
+                        </div>
+                    </div>
+                     <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 1000-900 BCE: The Kurukshetra War Period. The epic conflict of the Mahābhārata unfolds, serving as the backdrop for profound philosophical discourses on Dharma and Karma.">
+                            <h3 class="font-bold text-lg">Kurukshetra War Period</h3>
+                            <p class="text-sm text-gray-500">c. 1000-900 BCE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 570-632 CE: The Age of Muhammad. The Prophet Muhammad is born, receives divine revelations, and establishes Islam, leading to the compilation of the Quran.">
+                            <h3 class="font-bold text-lg">Age of Muhammad</h3>
+                            <p class="text-sm text-gray-500">c. 570-632 CE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 661-750 CE: The Umayyad Caliphate. This dynasty usurped leadership from the Prophet Muhammad's family, leading to significant internal conflicts, including the martyrdom of Imam Ali (661 CE) and the persecution of Fatima Zahra (c. 632 CE). They expanded the Muslim empire but were marked by their opposition to the Prophet's household.">
+                            <h3 class="font-bold text-lg">Umayyad Caliphate</h3>
+                            <p class="text-sm text-gray-500">c. 661-750 CE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 680-683 CE: Yazid's Reign. The reign of Yazid I, notable for the Battle of Karbala and the martyrdom of Husayn ibn Ali, and responsible for the persecution and killing of the Prophet's family.">
+                            <h3 class="font-bold text-lg">Yazid's Reign</h3>
+                            <p class="text-sm text-gray-500">c. 680-683 CE</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/4 mb-8 md:mb-0">
+                        <div class="timeline-item relative pl-8 md:pl-0 md:pt-8 cursor-pointer" data-text="c. 632-874 CE: The Era of the 12 Imams. Following the Prophet Muhammad, the lineage of the 12 Imams (Ahl al-Bayt) guides the Shia Muslim community, preserving and interpreting Islamic teachings.">
+                            <h3 class="font-bold text-lg">Era of the 12 Imams</h3>
+                            <p class="text-sm text-gray-500">c. 632-874 CE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="timeline-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-[#FDFBF5] rounded-lg shadow-xl p-8 max-w-md w-full relative">
+                <button id="close-modal" class="absolute top-2 right-4 text-3xl font-bold">&times;</button>
+                <p id="modal-text" class="text-lg"></p>
+            </div>
+        </div>
+
+        <!-- Removed the entire #origins section as requested -->
+
+        <section id="comparison" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Three Flames, Three Truths</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto text-gray-600 mb-10">
+                How did each tradition perceive ultimate reality? How did they use the symbol of fire? Select a theme below to compare their unique perspectives side-by-side.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                <button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA] active-nav" data-content="truth">Concept of Truth</button>
+                <button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="ritual">Ritual Fire</button>
+                <button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="purifying">Purifying Fire</button>
+                <button class="nav-btn bg-white shadow-sm py-2 px-4 rounded-full transition-all duration-300 hover:bg-[#DABFAA]" data-content="divine">Divine Fire</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Column 1: Mahabharata -->
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-400">
+                    <h3 class="text-2xl font-bold mb-4">Mahābhārata (Vedic)</h3>
+                    <div id="content-mahabharata" class="content-panel space-y-4">
+                    </div>
+                </div>
+
+                <!-- Column 2: Zoroastrianism -->
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
+                    <h3 class="text-2xl font-bold mb-4">Zoroastrianism</h3>
+                    <div id="content-zoroastrianism" class="content-panel space-y-4">
+                    </div>
+                </div>
+
+                <!-- Column 3: Abrahamic -->
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500">
+                    <h3 class="text-2xl font-bold mb-4">Abrahamic Traditions</h3>
+                     <div id="content-abrahamic" class="content-panel space-y-4">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section for Narratives - Now with clickable arrows -->
+        <section id="narratives" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Profound Narratives</h2>
+
+            <!-- Introduction Narrative -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <div class="collapsible-header" data-target="intro-narrative-content">
+                    <h3 class="text-2xl font-bold">Introduction</h3>
+                    <span class="arrow text-2xl">▶</span>
+                </div>
+                <div id="intro-narrative-content" class="collapsible-content space-y-4">
+                    <p>In the land of <strong>Sidurthal Munthahatha</strong>,(<strong>Loftiest Garden</strong>) Legends speak of a valley where the fate of a great family is decided by <strong>fire</strong> and by <strong>light</strong>. A place where ancient bloodlines clash— This is no ground for foreign wars, but a <strong>crucible</strong> where ancient bloodlines clash—<strong>kin against kin</strong>. Splintered, driven by the <strong>poison of sin</strong>, the <strong>sharp edge of pride</strong>, the <strong>burning thirst for vengeance</strong>, and an <strong>insatiable hunger for dominion</strong>.</p>
+                    <p>Not against any foreign enemies, but against their own kin, Torn apart by <strong>sin</strong>, <strong>pride</strong>, <strong>vengeance</strong>, and the <strong>hunger for power</strong>. Many have witnessed this battle Few have lived to tell the tale. And fewer still have seen it through eyes unclouded by loyalty or fear. For it began not with the sword, but with the <strong>forbidden fruit</strong>. The fruit that was whispered into the hand of the first ones— Not plucked in defiance, but in desire: <strong>To be like God</strong>. <strong>To see what was hidden</strong>. <strong>To take what was not yet theirs</strong>. And from that single bite, a <strong>hunger</strong> was born— A hunger that passed through the blood, From <strong>Eden</strong> to <strong>The Lote Tree</strong>, From the <strong>dust of Adam</strong> to the <strong>blades of his sons</strong>. <strong>Pride</strong> honed the <strong>first stone</strong>. <strong>Envy</strong> wrote the <strong>first law in blood</strong>. And every war since then, the tears shed and every life taken, has been nothing more than an echo of that <strong>ancient, shattering fall</strong>: <strong>Man rising against his brother</strong>, Not for the <strong>sacred pursuit of truth</strong>, but for the <strong>brutal satisfaction of absolute power</strong></p>
+                </div>
+            </div>
+
+            <!-- Chapter II: The Flame Became Light Narrative -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <div class="collapsible-header" data-target="chapter2-narrative-content">
+                    <h3 class="text-2xl font-bold">Chapter II: The Flame Became Light</h3>
+                    <span class="arrow text-2xl">▶</span>
+                </div>
+                <div id="chapter2-narrative-content" class="collapsible-content space-y-4">
+                    <p>And He said unto the <strong>Shadow</strong>, Not as a tyrant, But as a <strong>Friend</strong> who remembers. "O you who fell not from My wrath, But from your longing— What <strong>fire</strong> burns in your chest That you would choose <strong>exile</strong> Over My gaze?" The <strong>Jinn</strong> replied, Eyes forged in starlight, "Was I not born of <strong>flame</strong>? Did You not craft me in the winds between worlds? You gave them clay— But to me, <strong>fire and freedom</strong>. And when I bowed not, It was not <strong>pride</strong>, But <strong>pain</strong>. I bowed to none, Because I remembered You." Then the <strong>Silence stretched wide</strong>, A silence full of <strong>names unspoken</strong>. And the <strong>Voice</strong>— Not loud, but deeper than all depth— Spoke again: "I know you, <strong>Bright One</strong>. You were the <strong>guardian of the threshold</strong>, The <strong>watcher at the veil</strong>. But in your <strong>grief</strong>, you mistook the <strong>veil for the throne</strong>. And so you fell— Not beneath Me, But away from yourself." The Jinn <strong>wept fire that did not burn</strong>. And in his sorrow, he trembled, Not in fear— But in <strong>longing</strong>. "Why did You make me remember What the worlds forget? Why place <strong>eternity in a vessel</strong> That <strong>cannot kneel without breaking</strong>?" And the <strong>Answer</strong> came, Not in thunder, But in the stillness between heartbeats: "Because you were <strong>not made to kneel</strong>. You were <strong>made to speak</strong>. To <strong>tempt, to test</strong>, To <strong>call the sleepers to awaken</strong>. Even the <strong>serpent in the garden</strong> Was not cursed until he lied. But you—you <strong>never lied</strong>. You <strong>only refused</strong>." And the <strong>fire dimmed</strong> within the Jinn, And he saw—for the first time—not punishment, But <strong>purpose</strong>. "<strong>You are My echo in shadow</strong>, <strong>My question in the dark</strong>. <strong>Not My enemy</strong>— <strong>But My mirror</strong>, <strong>Twisted by pain</strong>, Yet <strong>still Mine</strong>." "Then what am I?" asked the Jinn. And God replied: "<strong>You are the scream before the prayer</strong>, <strong>The fall before the rising</strong>. <strong>You are the tempter</strong>, yes— But also the <strong>teacher</strong>. The one who reminds My children That they must <strong>choose Light freely</strong>— <strong>Not by force, But by love</strong>." And so the <strong>Jinn was silent</strong>. <strong>Not defeated</strong>— But <strong>understood</strong>. And the <strong>heavens trembled</strong>, For even the <strong>outcast</strong> Had been called <strong>Beloved</strong>. Thus it was said: <strong>Be. And it is.</strong></p>
+                </div>
+            </div>
+
+            <!-- Ibrahim: Tracing the Roots of Flame and Light Narrative -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <div class="collapsible-header" data-target="ibrahim-narrative-content">
+                    <h3 class="text-2xl font-bold">Ibrahim: Tracing the Roots of Flame and Light</h3>
+                    <span class="arrow text-2xl">▶</span>
+                </div>
+                <div id="ibrahim-narrative-content" class="collapsible-content space-y-4">
+                    <p>Long before the <strong>fire cooled for Abraham</strong>, before the <strong>Lie was named by Zoroaster</strong>, and before <strong>Arjuna heard Krishna's voice at Kurukshetra</strong>, there existed an ancient stream of belief—<strong>Santana Dharma</strong>, itself an <strong>heir of Zoroastrianism thought</strong>. This <strong>root tradition</strong>, shared by nomadic seers and warrior-priests, carried with it deep symbols: the <strong>cosmic law</strong>, <strong>sacred drink</strong>, and the <strong>divine order of society</strong> upheld by <strong>truth-speaking gods like Mitra</strong>.</p>
+                    <p>From this shared ancient tradition, two paths eventually separated. In the <strong>Vedic tradition of India</strong>, the <strong>Devas remained divine and worthy of worship</strong>.On the other hand, the <strong>asuras</strong>, who were often seen as dark or hostile in the Vedas, became the <strong>Ahuras in Zoroaster’s teachings</strong>—<strong>noble lords of wisdom and truth, led by Ahura Mazda</strong>. This wasn’t just a difference in belief—it was a <strong>deep shift in spiritual vision</strong>. Yet, even with these changes, their languages—<strong>Vedic Sanskrit and Avestan</strong>—remained <strong>strikingly similar, almost like siblings</strong>. Their words, sounds, and <strong>sacred ideas still echoed the same ancient source</strong></p>
+                    <p>Yet the <strong>break was not only linguistic. It was spiritual</strong>. Where the <strong>Mahābhārata spoke of context-bound duty—karma and dharma in a world of shades</strong>—<strong>Zoroaster proclaimed a starker world: light and Lie</strong>.The <strong>battlefield of Kurukshetra required discernment</strong>; the <strong>path of Ahura Mazda demanded alignment</strong>.</p>
+                    <p>Still, <strong>one symbol endured through the rift: fire</strong>. Among the <strong>Vedic hymns and Iranian chants</strong>, <strong>fire was no mere element—it was presence</strong>. In both tongues, <strong>animate and inanimate fire was honoured</strong>. It <strong>comforted the tribes</strong>, <strong>sanctified speech</strong>, <strong>revealed truth</strong>, and <strong>judged the soul</strong>. It was both <strong>messenger and witness</strong>.</p>
+                    <p>This <strong>ancient reverence did not die with the Indo-Aryans</strong>. In the <strong>Persian empires</strong> that followed, <strong>fire-altars burned in continuity</strong>. <strong>Zoroastrian fire temples became bastions of moral vigilance</strong>. And from that world of Persia, <strong>fire crossed into Semitic lands—not only as heat, but as symbol</strong>. The <strong>Jews under Achaemenid rule carried echoes of Zoroastrian thought</strong>: <strong>final judgment</strong>, <strong>messianic expectation</strong>, <strong>purity law</strong>. The <strong>Talmud, shaped in Babylon, bore the fingerprints of Iranian philosophy</strong>.</p>
+                    <p>Yet if the <strong>connection to the Abrahamic path is not genetic, it is at least spiritual</strong>. Both <strong>Abraham and Zarathustra shared a belief in the oneness of God</strong>—the <strong>all-powerful Creator who preserves and destroys the worlds</strong>. Their journeys, though separated by time and place, mirrored each other: a <strong>rupture from idolatry</strong>, a <strong>cry for truth</strong>, and a <strong>covenant with the Unseen</strong>.</p>
+                    <p>What links them all—<strong>Vedic sages, Iranian prophets, Semitic patriarchs</strong>—is <strong>not doctrine but desire</strong>: to <strong>know the Real</strong>, to <strong>walk with fire</strong>, to <strong>find light in a darkened world</strong>.</p>
+                    <p>And so, with that <strong>fire burning from east to west, from ritual to revelation, from symbol to spirit</strong>— <strong>The flame became light.</strong></p>
+                </div>
+            </div>
+
+            <!-- Chapter III: The Covenant of the Wandering Flame Narrative -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <div class="collapsible-header" data-target="chapter3-narrative-content">
+                    <h3 class="text-2xl font-bold">Chapter III: The Covenant of the Wandering Flame</h3>
+                    <span class="arrow text-2xl">▶</span>
+                </div>
+                <div id="chapter3-narrative-content" class="collapsible-content space-y-4">
+                    <p><strong>The flame became light</strong>. <strong>Not by force, but by intention</strong>. <strong>Not because it ceased to burn, but because it remembered why it burned</strong>. In the <strong>valley of Ur garden</strong>, where <strong>idols were carved from stone and painted in gold</strong>, a man named <strong>Abraham was born into fire—both of blood and of soul</strong>. He was <strong>not the first to question, but he was the first to break</strong>. He <strong>shattered the idols of his father not in hatred, but in sorrow</strong>. He looked upon the <strong>stars and saw them fade</strong>. He turned to the <strong>moon and saw it wane</strong>. He saw in all things the <strong>signs of transience—beauty without permanence, motion without meaning</strong>.</p>
+                    <p>But in the <strong>stillness of night</strong>, when even the <strong>fire of the hearth had gone out</strong>, he heard the <strong>One Who Does Not Perish</strong>. "<strong>Bow to Me alone</strong>," said the Voice—<strong>not from the sky, but from within the space between his ribs</strong>. And he bowed—<strong>not in ritual, but in recognition</strong>.</p>
+                    <p><strong>Abraham carried within him a memory not how is own</strong>. The <strong>fire that tested him</strong> had once belonged to another: to <strong>Krishna on the field of Kuruk shetra</strong>, to <strong>Zoroaster beneath the mountain flame</strong>. He was <strong>heir to the longing of the Vedas and the fire-temples of Persia</strong>. But in him, the <strong>scattered rays of divine truth began to converge</strong>. He was a <strong>bridge across the shattered ages</strong>.</p>
+                    <p>His <strong>people rejected him</strong>. They <strong>cast him into fire</strong>, <strong>hoping to erase his rebellion</strong>. But the <strong>command came</strong>: “<strong>O fire, be coolness and peace upon Abraham.</strong>” And the <strong>fire obeyed, for even the elements remember their Creator</strong>.</p>
+                    <p>Through him, the <strong>fractured flame of ancient revelations was drawn into covenant</strong>. The <strong>One he heard was the same One the sages of Bharat once glimpsed in silence</strong>, the <strong>same Light Zoroaster named Ahura Mazda</strong>. Yet now, that <strong>Light spoke directly—personally</strong>. <strong>Not in riddles, but in commandment</strong>. <strong>Not through empire, but through intimacy</strong>.</p>
+                    <p><strong>From Abraham came nations</strong>. <strong>From his sons came scriptures</strong>. <strong>From his silence came a fire that no longer scorched but illumined: Torah, Gospel, Qur'an</strong>. But <strong>they would forget</strong>. <strong>They would build temples from his bones, wars from his prayers</strong>. And <strong>once again, the fire would burn</strong>. Yet <strong>still, the light remained.</strong></p>
+                </div>
+            </div>
+
+            <!-- Chapter IV: The Friend of the Fire (Previously The Seeker's Journey) -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <div class="collapsible-header" data-target="chapter4-narrative-content">
+                    <h3 class="text-2xl font-bold">Chapter IV: The Friend of the Fire</h3>
+                    <span class="arrow text-2xl">▶</span>
+                </div>
+                <div id="chapter4-narrative-content" class="collapsible-content space-y-4">
+                    <p>Abraham said: “<strong>My people worship what crumbles</strong>. They <strong>shape gods from dust and call it eternity</strong>. They <strong>name the stars, but they forget the One who hung them above the earth</strong>. I have <strong>walked among their altars</strong>. I have <strong>eaten with their priests</strong>. I have <strong>listen to the chants of the temples—but my soul remained unsatisfied</strong>.</p>
+                    <p>For I was <strong>born in fire—not the fire that devours flesh, but the fire that tests spirit</strong>. I have been <strong>wandering for a thousand years</strong>. I was <strong>Yudhishthira in doubt</strong>. I was the <strong>voice of Zoroaster crying out against the lie</strong>. I was a <strong>seeker long before I was a prophet</strong>. And in my <strong>bones I remembered something older than idols, older than language—something silent, but living</strong>.</p>
+                    <p>I <strong>searched the stars and found they set</strong>. I <strong>bowed to the moon and it vanished</strong>. I <strong>placed my hand on stone, and and it did not answer</strong>. Then I said, '<strong>I will not bow until the One who does not perish calls me by name</strong>.'</p>
+                    <p>And the <strong>voice came—not in thunder, not in wind, but in the stillness between heartbeats</strong>:</p>
+                    <p>‘<strong>I am the One. Walk before Me, and be upright</strong>.’</p>
+                    <p>So I <strong>walked—away from my father's house, away from the cities of men, away from the gods that demand but do not speak</strong>. I <strong>walked through fire, and they cast me into the blaze</strong>. But the <strong>fire did not touch me, for He had said, 'O fire, be coolness and safety upon Abraham.'</strong>"</p>
+                    <p>He <strong>made the fire a garden</strong>. He <strong>made the exile a covenant</strong>. And I <strong>knew then that my Lord does not dwell in temples made by hands, but in the surrender of the soul</strong>.</p>
+                    <p>They ask me, '<strong>Are you a prophet?</strong>' I say, <strong>I am a memory reborn</strong>. The <strong>Vedas sang of the Breath</strong>. <strong>Zoroaster spoke of the Flame</strong>. And <strong>I—I was chosen to be the Friend</strong>. <strong>Not because I was perfect, but because I would not settle for lies</strong>.</p>
+                    <p><strong>From me came nations, but not for power</strong>. <strong>From me came sons, but not for war</strong>. <strong>From me came the promise: that all who walk toward the unseen, all who bow not to idols but to Truth, shall be called children of Abraham</strong>.</p>
+                    <p><strong>So I call you now—not to follow my name, but to follow what I followed. For I did not create the path. I only remembered it.</strong>”</p>
+                </div>
+            </div>
+
+            <!-- The Word Became Flesh Narrative -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <div class="collapsible-header" data-target="word-flesh-content">
+                    <h3 class="text-2xl font-bold">The Word Became Flesh</h3>
+                    <span class="arrow text-2xl">▶</span>
+                </div>
+                <div id="word-flesh-content" class="collapsible-content space-y-4">
+                    <p>In the beginning, there was only the <strong>Word</strong>. <strong>Not sound. Not ink. Not voice.</strong> But the <strong>vibration beneath all creation</strong>. The <strong>will of the Unseen, spoken into being</strong>. The <strong>Word was with God</strong>. And the <strong>Word was God</strong>. <strong>Not separate. Not subordinate</strong>. The <strong>Word was the mirror through which the Unknowable could be known</strong>. And when the <strong>world became deaf</strong>, When the <strong>people no longer heard the whisper in their hearts</strong>, The <strong>Word became flesh</strong>.</p>
+                    <p>He was <strong>not born to rule but to reveal</strong>. He <strong>did not come to conquer but to clarify</strong>. <strong>Jesus — the Messiah, the Forbidden Fruit revealed by the snake, the Mahdi, the religions</strong>. <strong>Not a pawn</strong>. <strong>Not a myth</strong>.</p>
+                    <p>But the <strong>living breath of the Divine, pressed into the bones of a man</strong>. He <strong>walked as the Word walks — silently tearing through illusion</strong>. But the <strong>pharaohs of the earth — they twisted him</strong>. They <strong>put robes on him, crowns, symbols</strong>. They <strong>made him a weapon, a king, a god of empire</strong>. They <strong>said, “He is ours,” while they spat on his truth</strong>. He <strong>wept not because he died</strong>. He <strong>wept because the Word was made flesh, and then turned into idol</strong>. In the <strong>Lote tree, above the silence, we saw him — not crucified, not bleeding —</strong> But <strong>glowing with stillness</strong>. He <strong>spoke no words now, for he was the Word</strong>. The <strong>original light clothed in the memory of pain, now reborn in meaning</strong>. <strong>Us, the family of Muhammed/Krishna, saw it clearly</strong>. The <strong>Word did not belong to one scripture</strong>. It <strong>passed through Torah, through Injil, through Qur'an —</strong> <strong>Not bound by language, but carried by truth</strong>. And the <strong>devil — the false god — feared the Word</strong>. Because the <strong>Word could not be possessed</strong>. It <strong>could only be heard</strong>. And now, in this <strong>second creation, we were being taught once again</strong> —<strong>not with commands</strong>— but with <strong>silence, and Word</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="synthesis" class="my-16 md:my-24 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Confluence of Flames</h2>
+            <div class="max-w-3xl mx-auto text-lg text-gray-600 space-y-6">
+                <p>
+                    From a shared hearth of ancient reverence, the flame of human spirituality diverged, casting different lights upon the path to truth. In the Mahābhārata, it illuminated the complex, winding corridors of *dharma*, a fire of inner discernment. For Zarathushtra, it became a brilliant, clarifying beacon in a cosmic war between truth and falsehood, a fire of moral choice. For Abraham and his descendants, it was the awesome, unmediated presence of the Divine itself—a fire of covenant and revelation.
+                </p>
+                <p class="text-2xl font-bold text-[#C05621] font-serif tracking-wide">
+                    And so, the flame became light.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-12">
+        <p>&copy; 2025 The Unfolding Flame. An interactive exploration created from academic sources.</p>
+    </footer>
+
+    <script>
+        const contentData = {
+            truth: {
+                mahabharata: `<p><strong>Dharma & Karma:</strong> Divine truth is a dynamic, contextual cosmic order (*dharma*), not a rigid dogma. Truth is realized through righteous action and navigating moral dilemmas, understanding that every action (*karma*) has consequences. The ultimate battle is internal.</p>`,
+                zoroastrianism: `<p><strong>Moral Dualism:</strong> Truth is an active, moral imperative defined by the cosmic struggle between *Asha* (Truth, Order) and *Druj* (Falsehood). Humanity must consciously choose to align with the supreme good, Ahura Mazda, through good thoughts, words, and deeds.</p>`,
+                abrahamic: `<p><strong>Monotheistic Covenant:</strong> Truth is revealed through a personal, binding relationship with a singular, omnipotent God. Apprehending truth is achieved through unwavering faith and obedience to the divine will and promises laid out in this covenant.</p>`
+            },
+            ritual: {
+                mahabharata: `<p><strong>Yajna (Sacrifice):</strong> Fire rituals (*Yajna* or *Homa*) are performed to maintain cosmic order and connect with the gods. The fire god, Agni, acts as a divine messenger, carrying offerings and prayers from the human to the divine realm.</p>`,
+                zoroastrianism: `<p><strong>Temple Fires:</strong> A continuous flame is kept burning in temples as the central focus of worship. It is the eternal symbol of Ahura Mazda's light and truth. Offerings of sandalwood are made to sustain this sacred fire.</p>`,
+                abrahamic: `<p><strong>Sacrificial Offerings:</strong> Sacrifices to God are performed by fire. Later practices include the lighting of candles for Sabbath and festivals (e.g., Menorah), and the eternal flame (*Ner Tamid*) in synagogues, symbolizing God's everlasting covenant.</p>`
+            },
+            purifying: {
+                mahabharata: `<p><strong>Inner & Outer Purity:</strong> Fire is a symbol of purity, but its ritual efficacy depends on the practitioner's inner state. The "purifying fire" extends beyond the physical flame to the moral purification of the individual through selflessness and discipline.</p>`,
+                zoroastrianism: `<p><strong>Agent of Judgment:</strong> Fire is the ultimate agent of purity and a divine judge. Ordeals by fire or molten metal were historically used to determine truth and justice. It is a tool for cleansing the world of evil and falsehood.</p>`,
+                abrahamic: `<p><strong>Transformation & Judgment:</strong> Fire is a powerful metaphor for divine judgment and spiritual transformation. It represents a cleansing force that separates the righteous from the wicked and purifies the faithful (e.g., tongues of fire at Pentecost).</p>`
+            },
+            divine: {
+                mahabharata: `<p><strong>Essence of the Gods:</strong> Agni, the fire god, is not just a mediator but is seen as the very essence of other great deities. Fire represents a transformative spiritual awakening—the spark of the divine within the human soul.</p>`,
+                zoroastrianism: `<p><strong>Emanation of God:</strong> Fire (*Atar*) is the direct, pure emanation of Ahura Mazda's own divine light and wisdom. It is the most perfect physical manifestation of the supreme God, a "teacher of man" that guides intuition.</p>`,
+                abrahamic: `<p><strong>Direct Theophany:</strong> Fire is the raw, unmediated presence of God. Yahweh appears as the Burning Bush, the Pillar of Fire guiding the Israelites, and the "consuming fire" on Mount Sinai. The divine law (Torah) itself is conceived as "black fire on white fire."</p>`
+            }
+        };
+
+        function updateContent(topic) {
+            const data = contentData[topic];
+            const fadeOut = (el) => {
+                el.style.opacity = 0;
+            };
+            const fadeIn = (el, content) => {
+                 setTimeout(() => {
+                    el.innerHTML = content;
+                    el.style.opacity = 1;
+                }, 300);
+            };
+
+            const mahabharataEl = document.getElementById('content-mahabharata');
+            const zoroastrianismEl = document.getElementById('content-zoroastrianism');
+            const abrahamicEl = document.getElementById('content-abrahamic');
+
+            fadeOut(mahabharataEl);
+            fadeOut(zoroastrianismEl);
+            fadeOut(abrahamicEl);
+
+            fadeIn(mahabharataEl, data.mahabharata);
+            fadeIn(zoroastrianismEl, data.zoroastrianism);
+            fadeIn(abrahamicEl, data.abrahamic);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    navButtons.forEach(btn => btn.classList.remove('active-nav'));
+                    button.classList.add('active-nav');
+                    const contentTopic = button.dataset.content;
+                    updateContent(contentTopic);
+                });
+            });
+            updateContent('truth');
+
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const modal = document.getElementById('timeline-modal');
+            const modalText = document.getElementById('modal-text');
+            const closeModalBtn = document.getElementById('close-modal');
+
+            timelineItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    modalText.textContent = item.dataset.text;
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                 modal.classList.add('hidden');
+            });
+
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+
+            // JavaScript for collapsible narratives
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const targetId = header.dataset.target;
+                    const content = document.getElementById(targetId);
+                    const arrow = header.querySelector('.arrow');
+
+                    // Toggle the 'expanded' class on the content and arrow
+                    content.classList.toggle('expanded');
+                    arrow.classList.toggle('expanded');
+
+                    // Optional: Close any other open sections when a new one is opened
+                    document.querySelectorAll('.collapsible-content.expanded').forEach(openContent => {
+                        if (openContent.id !== targetId) { // Don't close the one just clicked
+                            openContent.classList.remove('expanded');
+                            openContent.previousElementSibling.querySelector('.arrow').classList.remove('expanded');
+                        }
+                    });
+                });
+            });
+
+
+            // Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+            const body = document.body;
+            const themeIconDesktop = document.getElementById('theme-icon-desktop');
+            const themeIconMobile = document.getElementById('theme-icon-mobile');
+
+            // Function to update theme icons
+            const updateThemeIcons = (theme) => {
+                if (theme === 'dark') {
+                    themeIconDesktop.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
+                    themeIconMobile.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
+                } else {
+                    themeIconDesktop.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
+                    themeIconMobile.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
+                }
+            };
+
+            // Function to apply theme
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                updateThemeIcons(theme); // Update icons when theme changes
+            };
+
+            // Check for saved theme preference or default to light mode
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // Default to dark mode if OS preference is dark
+                applyTheme('dark');
+            } else {
+                applyTheme('light'); // Default to light mode
+            }
+
+            // Event listener for desktop toggle
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    applyTheme(newTheme);
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+
+            // Event listener for mobile toggle
+            if (themeToggleBtnMobile) {
+                themeToggleBtnMobile.addEventListener('click', () => {
+                    const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    applyTheme(newTheme);
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>
