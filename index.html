@@ -9,224 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
-    <style>
-        /* Define CSS variables for light mode */
-        :root {
-            --bg-primary: #FDFBF5;
-            --text-primary: #333333;
-            --bg-secondary: #F8F4ED;
-            --border-color: #DABFAA;
-            --shadow-color: rgba(0, 0, 0, 0.05);
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <link rel="stylesheet" href="assets/css/style.css"> 
 
-            /* Button specific colors - Light Mode */
-            --button-bg: #FFFFFF; /* White background for unselected buttons */
-            --button-hover-bg: #F0F0F0; /* Light gray for button hover */
-            --button-text-unselected: #C05621; /* Orange text for unselected buttons */
-            --button-bg-selected: #000000; /* Black background for selected button */
-            --button-text-selected: #FFFFFF; /* White text for selected button */
-
-            --active-nav-color: #C05621; /* Orange for active nav links/accents */
-            --footer-bg: #4A5568;
-            --footer-text: #FFFFFF;
-            --nav-link-light-color: #333333; /* Specific color for nav links in light mode */
-            --content-text-light-color: #333333; /* Explicit for content panels */
-            --narrative-content-light-color: #333333; /* Narrative content text color in light mode */
-        }
-
-        /* Define CSS variables for dark mode */
-        body.dark-mode {
-            --bg-primary: #0F172A; /* Darker primary background */
-            --text-primary: #E2E8F0; /* Lighter general text for contrast */
-            --bg-secondary: #1E293B; /* Slightly lighter secondary background */
-            --border-color: #334155; /* Darker border for subtle separation */
-            --shadow-color: rgba(255, 255, 255, 0.08); /* Lighter shadow for dark mode */
-
-            /* Button specific colors - Dark Mode */
-            --button-bg: #FFFFFF; /* White background for unselected buttons */
-            --button-hover-bg: #F0F0F0; /* Light gray for button hover */
-            --button-text-unselected: #FB923C; /* Orange text for unselected buttons */
-            --button-bg-selected: #000000; /* Black background for selected button */
-            --button-text-selected: #FFFFFF; /* White text for selected button */
-
-            --active-nav-color: #60A5FA; /* A distinct blue for active nav/accents */
-            --footer-bg: #0F172A; /* Match primary background */
-            --footer-text: #CBD5E0; /* Lighter footer text */
-            --nav-link-dark-color: #93C5FD; /* Lighter blue for nav links in dark mode */
-            --comparison-panel-content-dark-color: #000000; /* Black for content panels in dark mode */
-            --comparison-panel-heading-dark-color: #FB923C; /* Orange for comparison panel headings in dark mode */
-            --narrative-content-dark-color: #000000; /* Black for narrative content in dark mode */
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-        .active-nav {
-            color: var(--active-nav-color);
-            border-bottom-color: var(--active-nav-color);
-        }
-        .nav-link {
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-            color: var(--nav-link-light-color); /* Default to light mode nav link color */
-        }
-        .nav-link:hover {
-            color: var(--active-nav-color);
-            border-bottom-color: var(--active-nav-color);
-        }
-        /* Override nav link color for dark mode */
-        body.dark-mode .nav-link {
-            color: var(--nav-link-dark-color);
-        }
-        body.dark-mode .nav-link:hover {
-            color: var(--active-nav-color); /* Keep active-nav-color for hover in dark mode */
-        }
-
-        .content-panel {
-            transition: opacity 0.5s ease-in-out;
-            color: var(--content-text-light-color); /* Default content text color */
-        }
-        body.dark-mode .content-panel {
-            color: var(--comparison-panel-content-dark-color); /* Dark mode specific content text color */
-        }
-        /* Style for comparison panel headings in dark mode */
-        body.dark-mode .grid > div > h3 {
-            color: var(--comparison-panel-heading-dark-color);
-        }
-
-        /* Styles for comparison buttons */
-        .nav-btn {
-            background-color: var(--button-bg); /* White background */
-            color: var(--button-text-unselected); /* Orange text */
-            box-shadow: 0 1px 2px var(--shadow-color);
-            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .nav-btn:hover {
-            background-color: var(--button-hover-bg); /* Light gray on hover */
-        }
-        .nav-btn.active-nav {
-            background-color: var(--button-bg-selected); /* Black background when active */
-            color: var(--button-text-selected); /* White text when active */
-        }
-
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 400px;
-            }
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: -8.5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: var(--border-color);
-            border: 3px solid var(--bg-primary);
-        }
-         .timeline-item:hover::before {
-            background-color: var(--active-nav-color);
-         }
-         /* Styles for collapsible sections */
-         .collapsible-header {
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background-color: var(--bg-secondary);
-            border-radius: 0.5rem;
-            margin-bottom: 0.5rem;
-            transition: background-color 0.3s ease;
-         }
-         .collapsible-header:hover {
-            background-color: var(--button-hover-bg);
-         }
-         .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
-            opacity: 0;
-            padding: 0 1rem; /* Add padding here, will be visible when expanded */
-            color: var(--narrative-content-light-color); /* Ensure narrative content uses primary text color */
-         }
-         body.dark-mode .collapsible-content {
-            color: var(--narrative-content-dark-color); /* Black for narrative content in dark mode */
-         }
-         .collapsible-content.expanded {
-            max-height: 5000px; /* A very large value to accommodate content */
-            overflow-y: auto; /* Enable scrolling for long content */
-            opacity: 1;
-            padding: 1rem; /* Apply padding when expanded */
-         }
-         .arrow {
-            transition: transform 0.3s ease;
-         }
-         .arrow.expanded {
-            transform: rotate(90deg);
-         }
-         /* Apply CSS variables to Tailwind-like classes */
-         .bg-amber-50\/50 {
-            background-color: var(--bg-secondary);
-         }
-         .bg-white {
-            background-color: var(--button-bg);
-         }
-         .shadow-sm {
-            box-shadow: 0 1px 2px var(--shadow-color);
-         }
-         .shadow-md {
-            box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -1px var(--shadow-color);
-         }
-         .bg-gray-800 {
-            background-color: var(--footer-bg);
-         }
-         .text-white {
-            color: var(--footer-text);
-         }
-         .text-gray-600 {
-            color: var(--text-primary);
-         }
-         .text-gray-500 {
-            color: var(--text-primary);
-            opacity: 0.8;
-         }
-         /* Removed specific AI button styles as they are no longer used */
-         .generated-content, .generated-answer, .generated-reflection {
-            margin-top: 1rem;
-            padding: 1rem;
-            background-color: var(--bg-primary);
-            border-left: 4px solid var(--active-nav-color);
-            border-radius: 0.25rem;
-            font-style: italic;
-            color: var(--text-primary);
-         }
-         .loading-indicator {
-            margin-top: 1rem;
-            font-style: italic;
-            color: var(--active-nav-color);
-         }
-         /* Added style for modal text in dark mode */
-         body.dark-mode #modal-text {
-            color: #000000; /* Black color for modal text in dark mode */
-         }
-    </style>
 </head>
 <body class="antialiased">
 
@@ -239,13 +23,11 @@
                 <a href="#narratives" class="nav-link">Narratives</a>
                 <a href="#synthesis" class="nav-link">Synthesis</a>
                 <button id="theme-toggle" class="nav-link px-3 py-1 rounded-full text-sm">
-                    <span id="theme-icon-desktop"></span> <!-- Icon will be inserted here -->
-                </button>
+                    <span id="theme-icon-desktop"></span> </button>
             </nav>
             <div class="md:hidden flex items-center">
                 <button id="theme-toggle-mobile" class="nav-link px-3 py-1 rounded-full text-sm mr-2">
-                    <span id="theme-icon-mobile"></span> <!-- Icon will be inserted here -->
-                </button>
+                    <span id="theme-icon-mobile"></span> </button>
                 <button id="menu-btn" class="text-3xl">☰</button>
             </div>
         </div>
@@ -353,8 +135,6 @@
             </div>
         </div>
 
-        <!-- Removed the entire #origins section as requested -->
-
         <section id="comparison" class="my-16 md:my-24">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Three Flames, Three Truths</h2>
             <p class="text-lg text-center max-w-3xl mx-auto text-gray-600 mb-10">
@@ -369,21 +149,18 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Column 1: Mahabharata -->
                 <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-400">
                     <h3 class="text-2xl font-bold mb-4">Mahābhārata (Vedic)</h3>
                     <div id="content-mahabharata" class="content-panel space-y-4">
                     </div>
                 </div>
 
-                <!-- Column 2: Zoroastrianism -->
                 <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
                     <h3 class="text-2xl font-bold mb-4">Zoroastrianism</h3>
                     <div id="content-zoroastrianism" class="content-panel space-y-4">
                     </div>
                 </div>
 
-                <!-- Column 3: Abrahamic -->
                 <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500">
                     <h3 class="text-2xl font-bold mb-4">Abrahamic Traditions</h3>
                      <div id="content-abrahamic" class="content-panel space-y-4">
@@ -392,11 +169,9 @@
             </div>
         </section>
 
-        <!-- Section for Narratives - Now with clickable arrows -->
         <section id="narratives" class="my-16 md:my-24">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Profound Narratives</h2>
 
-            <!-- Introduction Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="intro-narrative-content">
                     <h3 class="text-2xl font-bold">Introduction</h3>
@@ -404,11 +179,10 @@
                 </div>
                 <div id="intro-narrative-content" class="collapsible-content space-y-4">
                     <p>In the land of <strong>Sidurthal Munthahatha</strong>,(<strong>Loftiest Garden</strong>) Legends speak of a valley where the fate of a great family is decided by <strong>fire</strong> and by <strong>light</strong>. A place where ancient bloodlines clash— This is no ground for foreign wars, but a <strong>crucible</strong> where ancient bloodlines clash—<strong>kin against kin</strong>. Splintered, driven by the <strong>poison of sin</strong>, the <strong>sharp edge of pride</strong>, the <strong>burning thirst for vengeance</strong>, and an <strong>insatiable hunger for dominion</strong>.</p>
-                    <p>Not against any foreign enemies, but against their own kin, Torn apart by <strong>sin</strong>, <strong>pride</strong>, <strong>vengeance</strong>, and the <strong>hunger for power</strong>. Many have witnessed this battle Few have lived to tell the tale. And fewer still have seen it through eyes unclouded by loyalty or fear. For it began not with the sword, but with the <strong>forbidden fruit</strong>. The fruit that was whispered into the hand of the first ones— Not plucked in defiance, but in desire: <strong>To be like God</strong>. <strong>To see what was hidden</strong>. <strong>To take what was not yet theirs</strong>. And from that single bite, a <strong>hunger</strong> was born— A hunger that passed through the blood, From <strong>Eden</strong> to <strong>The Lote Tree</strong>, From the <strong>dust of Adam</strong> to the <strong>blades of his sons</strong>. <strong>Pride</strong> honed the <strong>first stone</strong>. <strong>Envy</strong> wrote the <strong>first law in blood</strong>. And every war since then, the tears shed and every life taken, has been nothing more than an echo of that <strong>ancient, shattering fall</strong>: <strong>Man rising against his brother</strong>, Not for the <strong>sacred pursuit of truth</strong>, but for the <strong>brutal satisfaction of absolute power</strong></p>
+                    <p>Not against any foreign enemies, but against their own kin, Torn apart by <strong>sin</strong>, <strong>pride</strong>, <strong>vengeance</strong>, and the <strong>hunger for power</strong>. Many have witnessed this battle Few have lived to tell the tale. And fewer still have seen it through eyes unclouded by loyalty or fear. For it began not with the sword, but with the <strong>forbidden fruit</strong>. The fruit that was whispered into the hand of the first ones— Not plucked in defiance, but in desire: <strong>To be like God</strong>. <strong>To see what was hidden</strong>. <strong>To take what was not yet theirs</strong>. And from that single bite, a <strong>hunger</strong> was born— A hunger that passed through the blood, From <strong>Eden</strong> to <strong>The Lote Tree</strong>, From the <strong>dust of Adam</strong> to the <strong>blades of his sons</strong>. <strong>Pride</strong> honed the <strong>first stone</strong>. <strong>Envy</strong> wrote the <strong>first law in blood</strong>. And every war since then, the tears shed and every life taken, has been nothing more than an echo of that <strong>ancient, shattering fall: Man rising against his brother</strong>, Not for the <strong>sacred pursuit of truth</strong>, but for the <strong>brutal satisfaction of absolute power</strong></p>
                 </div>
             </div>
 
-            <!-- Chapter II: The Flame Became Light Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="chapter2-narrative-content">
                     <h3 class="text-2xl font-bold">Chapter II: The Flame Became Light</h3>
@@ -419,7 +193,6 @@
                 </div>
             </div>
 
-            <!-- Ibrahim: Tracing the Roots of Flame and Light Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="ibrahim-narrative-content">
                     <h3 class="text-2xl font-bold">Ibrahim: Tracing the Roots of Flame and Light</h3>
@@ -437,7 +210,6 @@
                 </div>
             </div>
 
-            <!-- Chapter III: The Covenant of the Wandering Flame Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="chapter3-narrative-content">
                     <h3 class="text-2xl font-bold">Chapter III: The Covenant of the Wandering Flame</h3>
@@ -453,7 +225,6 @@
                 </div>
             </div>
 
-            <!-- Chapter IV: The Friend of the Fire (Previously The Seeker's Journey) -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="chapter4-narrative-content">
                     <h3 class="text-2xl font-bold">Chapter IV: The Friend of the Fire</h3>
@@ -473,7 +244,6 @@
                 </div>
             </div>
 
-            <!-- The Word Became Flesh Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="word-flesh-content">
                     <h3 class="text-2xl font-bold">The Word Became Flesh</h3>
@@ -505,178 +275,7 @@
         <p>&copy; 2025 The Unfolding Flame. An interactive exploration created from academic sources.</p>
     </footer>
 
-    <script>
-        const contentData = {
-            truth: {
-                mahabharata: `<p><strong>Dharma & Karma:</strong> Divine truth is a dynamic, contextual cosmic order (*dharma*), not a rigid dogma. Truth is realized through righteous action and navigating moral dilemmas, understanding that every action (*karma*) has consequences. The ultimate battle is internal.</p>`,
-                zoroastrianism: `<p><strong>Moral Dualism:</strong> Truth is an active, moral imperative defined by the cosmic struggle between *Asha* (Truth, Order) and *Druj* (Falsehood). Humanity must consciously choose to align with the supreme good, Ahura Mazda, through good thoughts, words, and deeds.</p>`,
-                abrahamic: `<p><strong>Monotheistic Covenant:</strong> Truth is revealed through a personal, binding relationship with a singular, omnipotent God. Apprehending truth is achieved through unwavering faith and obedience to the divine will and promises laid out in this covenant.</p>`
-            },
-            ritual: {
-                mahabharata: `<p><strong>Yajna (Sacrifice):</strong> Fire rituals (*Yajna* or *Homa*) are performed to maintain cosmic order and connect with the gods. The fire god, Agni, acts as a divine messenger, carrying offerings and prayers from the human to the divine realm.</p>`,
-                zoroastrianism: `<p><strong>Temple Fires:</strong> A continuous flame is kept burning in temples as the central focus of worship. It is the eternal symbol of Ahura Mazda's light and truth. Offerings of sandalwood are made to sustain this sacred fire.</p>`,
-                abrahamic: `<p><strong>Sacrificial Offerings:</strong> Sacrifices to God are performed by fire. Later practices include the lighting of candles for Sabbath and festivals (e.g., Menorah), and the eternal flame (*Ner Tamid*) in synagogues, symbolizing God's everlasting covenant.</p>`
-            },
-            purifying: {
-                mahabharata: `<p><strong>Inner & Outer Purity:</strong> Fire is a symbol of purity, but its ritual efficacy depends on the practitioner's inner state. The "purifying fire" extends beyond the physical flame to the moral purification of the individual through selflessness and discipline.</p>`,
-                zoroastrianism: `<p><strong>Agent of Judgment:</strong> Fire is the ultimate agent of purity and a divine judge. Ordeals by fire or molten metal were historically used to determine truth and justice. It is a tool for cleansing the world of evil and falsehood.</p>`,
-                abrahamic: `<p><strong>Transformation & Judgment:</strong> Fire is a powerful metaphor for divine judgment and spiritual transformation. It represents a cleansing force that separates the righteous from the wicked and purifies the faithful (e.g., tongues of fire at Pentecost).</p>`
-            },
-            divine: {
-                mahabharata: `<p><strong>Essence of the Gods:</strong> Agni, the fire god, is not just a mediator but is seen as the very essence of other great deities. Fire represents a transformative spiritual awakening—the spark of the divine within the human soul.</p>`,
-                zoroastrianism: `<p><strong>Emanation of God:</strong> Fire (*Atar*) is the direct, pure emanation of Ahura Mazda's own divine light and wisdom. It is the most perfect physical manifestation of the supreme God, a "teacher of man" that guides intuition.</p>`,
-                abrahamic: `<p><strong>Direct Theophany:</strong> Fire is the raw, unmediated presence of God. Yahweh appears as the Burning Bush, the Pillar of Fire guiding the Israelites, and the "consuming fire" on Mount Sinai. The divine law (Torah) itself is conceived as "black fire on white fire."</p>`
-            }
-        };
+    <script src="assets/js/script.js"></script>
 
-        function updateContent(topic) {
-            const data = contentData[topic];
-            const fadeOut = (el) => {
-                el.style.opacity = 0;
-            };
-            const fadeIn = (el, content) => {
-                 setTimeout(() => {
-                    el.innerHTML = content;
-                    el.style.opacity = 1;
-                }, 300);
-            };
-
-            const mahabharataEl = document.getElementById('content-mahabharata');
-            const zoroastrianismEl = document.getElementById('content-zoroastrianism');
-            const abrahamicEl = document.getElementById('content-abrahamic');
-
-            fadeOut(mahabharataEl);
-            fadeOut(zoroastrianismEl);
-            fadeOut(abrahamicEl);
-
-            fadeIn(mahabharataEl, data.mahabharata);
-            fadeIn(zoroastrianismEl, data.zoroastrianism);
-            fadeIn(abrahamicEl, data.abrahamic);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    navButtons.forEach(btn => btn.classList.remove('active-nav'));
-                    button.classList.add('active-nav');
-                    const contentTopic = button.dataset.content;
-                    updateContent(contentTopic);
-                });
-            });
-            updateContent('truth');
-
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const modal = document.getElementById('timeline-modal');
-            const modalText = document.getElementById('modal-text');
-            const closeModalBtn = document.getElementById('close-modal');
-
-            timelineItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    modalText.textContent = item.dataset.text;
-                    modal.classList.remove('hidden');
-                });
-            });
-
-            closeModalBtn.addEventListener('click', () => {
-                 modal.classList.add('hidden');
-            });
-
-            modal.addEventListener('click', (e) => {
-                if(e.target === modal) {
-                    modal.classList.add('hidden');
-                }
-            });
-
-            // JavaScript for collapsible narratives
-            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-            collapsibleHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const targetId = header.dataset.target;
-                    const content = document.getElementById(targetId);
-                    const arrow = header.querySelector('.arrow');
-
-                    // Toggle the 'expanded' class on the content and arrow
-                    content.classList.toggle('expanded');
-                    arrow.classList.toggle('expanded');
-
-                    // Optional: Close any other open sections when a new one is opened
-                    document.querySelectorAll('.collapsible-content.expanded').forEach(openContent => {
-                        if (openContent.id !== targetId) { // Don't close the one just clicked
-                            openContent.classList.remove('expanded');
-                            openContent.previousElementSibling.querySelector('.arrow').classList.remove('expanded');
-                        }
-                    });
-                });
-            });
-
-
-            // Theme Toggle Logic
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
-            const body = document.body;
-            const themeIconDesktop = document.getElementById('theme-icon-desktop');
-            const themeIconMobile = document.getElementById('theme-icon-mobile');
-
-            // Function to update theme icons
-            const updateThemeIcons = (theme) => {
-                if (theme === 'dark') {
-                    themeIconDesktop.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
-                    themeIconMobile.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
-                } else {
-                    themeIconDesktop.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
-                    themeIconMobile.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
-                }
-            };
-
-            // Function to apply theme
-            const applyTheme = (theme) => {
-                if (theme === 'dark') {
-                    body.classList.add('dark-mode');
-                } else {
-                    body.classList.remove('dark-mode');
-                }
-                updateThemeIcons(theme); // Update icons when theme changes
-            };
-
-            // Check for saved theme preference or default to light mode
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                applyTheme(savedTheme);
-            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                // Default to dark mode if OS preference is dark
-                applyTheme('dark');
-            } else {
-                applyTheme('light'); // Default to light mode
-            }
-
-            // Event listener for desktop toggle
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', () => {
-                    const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    applyTheme(newTheme);
-                    localStorage.setItem('theme', newTheme);
-                });
-            }
-
-            // Event listener for mobile toggle
-            if (themeToggleBtnMobile) {
-                themeToggleBtnMobile.addEventListener('click', () => {
-                    const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    applyTheme(newTheme);
-                    localStorage.setItem('theme', newTheme);
-                });
-            }
-        });
-
-    </script>
 </body>
 </html>
