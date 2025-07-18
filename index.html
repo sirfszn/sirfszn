@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <style>
         /* Define CSS variables for light mode */
         :root {
             --bg-primary: #FDFBF5;
@@ -239,13 +238,11 @@
                 <a href="#narratives" class="nav-link">Narratives</a>
                 <a href="#synthesis" class="nav-link">Synthesis</a>
                 <button id="theme-toggle" class="nav-link px-3 py-1 rounded-full text-sm">
-                    <span id="theme-icon-desktop"></span> <!-- Icon will be inserted here -->
-                </button>
+                    <span id="theme-icon-desktop"></span> </button>
             </nav>
             <div class="md:hidden flex items-center">
                 <button id="theme-toggle-mobile" class="nav-link px-3 py-1 rounded-full text-sm mr-2">
-                    <span id="theme-icon-mobile"></span> <!-- Icon will be inserted here -->
-                </button>
+                    <span id="theme-icon-mobile"></span> </button>
                 <button id="menu-btn" class="text-3xl">☰</button>
             </div>
         </div>
@@ -261,7 +258,7 @@
 
         <section class="text-center my-12 md:my-16">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">The Unfolding Flame</h1>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-white">
                 An interactive journey tracing a single, profound metaphor—fire and light of Guides (The Mahids)—through three great spiritual traditions: the Vedic path of the Mahābhārata, the dualistic vision of Zoroastrianism, and the monotheistic covenant of Abraham. Exploring their shared roots, divergent truths, and a universal quest for light and truth
             </p>
         </section>
@@ -353,8 +350,6 @@
             </div>
         </div>
 
-        <!-- Removed the entire #origins section as requested -->
-
         <section id="comparison" class="my-16 md:my-24">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Three Flames, Three Truths</h2>
             <p class="text-lg text-center max-w-3xl mx-auto text-gray-600 mb-10">
@@ -369,21 +364,18 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Column 1: Mahabharata -->
                 <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-400">
                     <h3 class="text-2xl font-bold mb-4">Mahābhārata (Vedic)</h3>
                     <div id="content-mahabharata" class="content-panel space-y-4">
                     </div>
                 </div>
 
-                <!-- Column 2: Zoroastrianism -->
                 <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-500">
                     <h3 class="text-2xl font-bold mb-4">Zoroastrianism</h3>
                     <div id="content-zoroastrianism" class="content-panel space-y-4">
                     </div>
                 </div>
 
-                <!-- Column 3: Abrahamic -->
                 <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500">
                     <h3 class="text-2xl font-bold mb-4">Abrahamic Traditions</h3>
                      <div id="content-abrahamic" class="content-panel space-y-4">
@@ -392,11 +384,9 @@
             </div>
         </section>
 
-        <!-- Section for Narratives - Now with clickable arrows -->
         <section id="narratives" class="my-16 md:my-24">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Profound Narratives</h2>
 
-            <!-- Introduction Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="intro-narrative-content">
                     <h3 class="text-2xl font-bold">Introduction</h3>
@@ -408,7 +398,6 @@
                 </div>
             </div>
 
-            <!-- Chapter II: The Flame Became Light Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="chapter2-narrative-content">
                     <h3 class="text-2xl font-bold">Chapter II: The Flame Became Light</h3>
@@ -419,7 +408,6 @@
                 </div>
             </div>
 
-            <!-- Ibrahim: Tracing the Roots of Flame and Light Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="ibrahim-narrative-content">
                     <h3 class="text-2xl font-bold">Ibrahim: Tracing the Roots of Flame and Light</h3>
@@ -437,7 +425,6 @@
                 </div>
             </div>
 
-            <!-- Chapter III: The Covenant of the Wandering Flame Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="chapter3-narrative-content">
                     <h3 class="text-2xl font-bold">Chapter III: The Covenant of the Wandering Flame</h3>
@@ -453,10 +440,9 @@
                 </div>
             </div>
 
-            <!-- Chapter IV: The Friend of the Fire (Previously The Seeker's Journey) -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="chapter4-narrative-content">
-                    <h3 class="text-2xl font-bold">Chapter IV: The Friend of the Fire</h3>
+                    <h3 class="2xl font-bold">Chapter IV: The Friend of the Fire</h3>
                     <span class="arrow text-2xl">▶</span>
                 </div>
                 <div id="chapter4-narrative-content" class="collapsible-content space-y-4">
@@ -473,7 +459,6 @@
                 </div>
             </div>
 
-            <!-- The Word Became Flesh Narrative -->
             <div class="bg-white p-6 rounded-lg shadow-md mb-8">
                 <div class="collapsible-header" data-target="word-flesh-content">
                     <h3 class="text-2xl font-bold">The Word Became Flesh</h3>
@@ -494,7 +479,7 @@
                 <p>
                     From a shared hearth of ancient reverence, the flame of human spirituality diverged, casting different lights upon the path to truth. In the Mahābhārata, it illuminated the complex, winding corridors of *dharma*, a fire of inner discernment. For Zarathushtra, it became a brilliant, clarifying beacon in a cosmic war between truth and falsehood, a fire of moral choice. For Abraham and his descendants, it was the awesome, unmediated presence of the Divine itself—a fire of covenant and revelation.
                 </p>
-                <p class="text-2xl font-bold text-[#C05621] font-serif tracking-wide">
+                <p class="text-2xl font-bold text-white font-serif tracking-wide">
                     And so, the flame became light.
                 </p>
             </div>
